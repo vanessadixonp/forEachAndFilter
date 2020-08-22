@@ -3,14 +3,10 @@ function called doubleValues which accepts an array and returns a new array with
 
 */
 function doubleValues(arr){
-    let doubledValues = [];
-     arr.map(number => {
-        doubledValues.push(number * 2)
+    return arr.map(function(number) {
+        return number * 2;
     })
-    return doubledValues;
 }
-
-console.log(doubleValues([1,2,3]))
 
 
 /*
@@ -18,16 +14,12 @@ console.log(doubleValues([1,2,3]))
 
 */
 function onlyEvenValues(arr){
-    let evenValues = [];
-    arr.map(number => {
-        if(number % 2 === 0) {
-            evenValues.push(number)
-        }
+    return arr.filter(function(number) {
+        return number % 2 === 0; 
     })
-    return evenValues;
+
 }
 
-console.log(onlyEvenValues([1, 2, 3, 4, 5, 6]))
 
 /*
  function called showFirstAndLast which accepts an array of strings and returns a new array with only the first and last character of each string.
@@ -36,15 +28,11 @@ console.log(onlyEvenValues([1, 2, 3, 4, 5, 6]))
 
 */
 function showFirstAndLast(arr){
-    let firstLast = [];
-    arr.filter(name => {
-        firstLast.push(`${name[0]}${name[name.length-1]}`)
-    })
+  return arr.map(function(char) {
+      return `${char[0]}${char[char.length-1]}`
+  })
 
-    return firstLast;
 }
-
-console.log(showFirstAndLast(['vanessa','javascript', 'believe', 'python']))
 
 
 /*
@@ -52,35 +40,34 @@ function called addKeyAndValue which accepts an array of objects, a key, and a v
 
 */
 function addKeyAndValue(arr,key,value){
-    arr.forEach(kv => {
-        kv[key] = value;
+     arr.forEach(function(obj){
+         obj[key] = value;
     })
+    console.log(arr)
     return arr;
-    
 }
 
-console.log(addKeyAndValue([{name: 'Elie'}, {name: 'Tim'}, {name: 'Matt'}, {name: 'Colt'}], 'title', 'instructor', 'showe', 'mia'))
+
 /*
-function called vowelCount which accepts a string and returns an object with the keys as the vowel and the values as the number of times the vowel appears in the string. This function should be case insensitive so a lowercase letter and uppercase letter should count
+function called vowelCount which accepts a string and returns an object with the keys as the vowel and the values as the number of times the vowel appears in the string. This function is case insensitive so a lowercase letter and uppercase letter should count
 
 */
 function vowelCount(str){
-   let word = str.split('');
-   let vowArr = {};
-   let vows = 'aeiou';
-   word.forEach(letter => {
-       const lowerLetter = letter.toLowerCase();
-       if(vows.indexOf(lowerLetter) !== -1) {
-           if(vowArr[lowerLetter]) {
-            vowArr[lowerLetter]++;
-           } else {
-               vowArr[lowerLetter] = 1;
-           }
-       }
-   })
-   return vowArr;
+    let splitStr = str.split('');
+    let obj = {};
+    let vows = 'aeiou';
+    splitStr.filter(function(char){
+        let lowCases = char.toLowerCase();
+        if(vows.indexOf(lowCases) !== -1) {
+            if(obj[lowCases]) {
+                obj[lowCases]+=1
+            }else {
+                obj[lowCases] = 1;
+            }
+        }
+    })
+    return obj;
 }
-console.log(vowelCount('CHOSEN'));
 
 
 /*
@@ -89,11 +76,9 @@ function called doubleValuesWithMap which accepts an array and returns a new arr
 */
 
 function doubleValuesWithMap(arr) {
-    let newArr = [];
-    arr.map(number => {
-        newArr.push(number * 2)
+    return arr.map(function(number) {
+        return number * 2;
     })
-    return newArr;
 }
 
 /*
@@ -102,26 +87,21 @@ function called valTimesIndex which accepts an array and returns a new array wit
 */
 
 function valTimesIndex(arr){
-    let newArr = [];
-    arr.map((value, index, arr) => {
-        newArr.push(value * index);
+    return arr.map(function(number,i) {
+        return number * i;
     })
-    return newArr;
 }
 
-console.log(valTimesIndex([1,2,3]))
+
 /*
  function called extractKey which accepts an array of objects and some key and returns a new array with the value of that key in each object.
 
 */
 
 function extractKey(arr, key){
-    let newArr = [];
-    arr.map(obj => {
-        newArr.push(obj[key]);
+    return arr.map(function(obj) {
+        return obj[key]
     })
-    console.log(newArr)
-    return newArr;
 }
 
 
@@ -132,15 +112,12 @@ function called extractFullName which accepts an array of objects and returns a 
 
 function extractFullName(arr){
     let fullName = [];
-    arr.map(name => {
-        console.log(name.last)
-        fullName.push(`${name.first} ${name.last}`)
-
+     arr.forEach(function(name) {
+         fullName.push(`${name.first} ${name.last}`)
     })
     return fullName;
 }
 
-console.log(extractFullName([{first: "vanessa", last: "jones"}]))
 
 /*
  function called filterByValue which accepts an array of objects and a key and returns a new array with all the objects that contain that key.
@@ -148,21 +125,20 @@ console.log(extractFullName([{first: "vanessa", last: "jones"}]))
 */
 
 function filterByValue(arr, key) {
-   return arr.filter(name => {
-       return name[key] !== undefined  
+    return arr.filter(function(obj){
+        return obj[key] !== undefined;
     })
+    
 }
 
 /*
  function called find which accepts an array and a value and returns the first element in the array that has the same value as the second parameter or undefined if the value is not found in the array.
-
-
 */
 
 function find(arr, searchValue) {
-    return arr.filter(number => {
-       return number === searchValue
-    })[0];
+    return arr.filter(function(item){
+        return item === searchValue
+    })[0]
 }
 
 /*
@@ -171,9 +147,9 @@ function find(arr, searchValue) {
 */
 
 function findInObj(arr, key, searchValue) {
-    return arr.filter(first => {
-        return first[key] === searchValue
-    })[0]
+        return arr.filter(function(value){
+            return value[key] === searchValue
+        })[0]
 }
 
 /*
@@ -183,12 +159,12 @@ function called removeVowels which accepts a string and returns a new string wit
 */
 
 function removeVowels(str) {
-    const vows = 'aeiou';
+    let vow = 'aeiou';
     return str.toLowerCase().split('')
-      .filter(letter => {
-        return vows.indexOf(letter) === -1;
-      })
-      .join("");
+    .filter(function(letter) {
+        return vow.indexOf(letter) === -1
+    })
+    .join('')
 }
 
 /*
@@ -196,12 +172,10 @@ function called doubleOddNumbers which accepts an array and returns a new array 
 */
 
 function doubleOddNumbers(arr) {
-   let oddArr = [];
-    arr.map(number => {
-        if(number % 2 != 0) {
-            oddArr.push(number * 2)
-        }
+    let newDouble = [];
+     arr.map(function(num) {
+      if(num % 2 !== 0) 
+        newDouble.push(num * 2);
     })
-    console.log(oddArr)
-    return oddArr;
+    return newDouble;
 }
